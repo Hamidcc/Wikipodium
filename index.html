@@ -77,6 +77,64 @@
             text-align: center;
             animation: fadeIn 2.5s ease-out;
         }
+        #searchForm {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+        }
+        
+        #searchForm input {
+            padding: 12px 20px;
+            font-size: 1rem;
+            border: 2px solid #007bff;
+            border-radius: 8px 0 0 8px;
+            outline: none;
+            transition: all 0.3s ease;
+            width: 300px;
+            box-sizing: border-box;
+        }
+        
+        #searchForm input:focus {
+            border-color: #0056b3;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+        
+        #searchForm button {
+            padding: 12px 24px;
+            font-size: 1rem;
+            background-color: #007bff;
+            color: white;
+            border: 2px solid #007bff;
+            border-radius: 0 8px 8px 0;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        
+        #searchForm button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+        
+        #searchForm button:active {
+            transform: scale(1);
+        }
+        
+        #searchResults {
+            margin-top: 20px;
+            font-size: 1rem;
+            color: #343a40;
+            text-align: center;
+        }
+        
+        #searchResults a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        
+        #searchResults a:hover {
+            text-decoration: underline;
+        }
 
         @keyframes fadeInSlideDown {
             from {
@@ -141,6 +199,54 @@
         Explore a Random Article
         <span></span>
     </a>
+<form id="searchForm">
+  <input type="text" id="searchQuery" placeholder="Search..." />
+  <button type="submit">Search</button>
+</form>
+
+<div id="searchResults"></div>
+
+<script>
+  async function getFiles() {
+    const response = await fetch('/.netlify/functions/list-files');
+    const files = await response.json();
+    return files;
+  }
+
+  // Function to format the search result
+  function formatResult(page) {
+    return page
+      .replace(/-/g, ' ') // Replace dashes with spaces
+      .replace(/\.html$/, ''); // Remove .html extension
+  }
+
+  // Function to search pages based on user query
+  function searchPages(query, files) {
+    query = query.toLowerCase(); // Normalize query to lower case
+    return files.filter(page => page.toLowerCase().includes(query));
+  }
+
+  document.getElementById('searchForm').addEventListener('submit', async function(event) {
+    event.preventDefault();
+    const query = document.getElementById('searchQuery').value;
+    const files = await getFiles(); // Get files dynamically from Netlify function
+    const results = searchPages(query, files);
+
+    const resultsContainer = document.getElementById('searchResults');
+    resultsContainer.innerHTML = ''; // Clear previous results
+
+    if (results.length > 0) {
+      results.forEach(page => {
+        const formattedPage = formatResult(page);
+        const resultItem = document.createElement('div');
+        resultItem.innerHTML = `<a href="/html-pages/${page}">${formattedPage}</a>`;
+        resultsContainer.appendChild(resultItem);
+      });
+    } else {
+      resultsContainer.innerHTML = 'No results found.';
+    }
+  });
+</script>
 
     <footer>
         © 2024 WikiPodium. Empowering knowledge, one article at a time.
