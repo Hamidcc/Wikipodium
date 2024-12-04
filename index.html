@@ -208,11 +208,10 @@
 
 <script>
   const pages = [
-    'page-one.html',
-    'page-two.html',
-    'another-page.html',
-    'contact-us.html',
-    // Add more pages here as needed
+    'american-flag.html',
+    'egg.html',
+    'theory-of-evolution.html',
+    'the-periodic-table-of-elements.html',
   ];
 
   // Function to format the search result
@@ -242,7 +241,7 @@
       results.forEach(page => {
         const formattedPage = formatResult(page);
         const resultItem = document.createElement('div');
-        resultItem.innerHTML = `<a href="/html-pages/${page}">${formattedPage}</a>`;
+        resultItem.innerHTML = `<a href="/wiki/${page}">${formattedPage}</a>`;
         resultsContainer.appendChild(resultItem);
       });
     } else {
