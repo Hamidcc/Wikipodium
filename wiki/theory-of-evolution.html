@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Theory of Evolution</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(120deg, #f6f8fc, #e9efff);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        h1, h2 {
+            color: #343a40;
+            text-align: center;
+            animation: fadeInSlideDown 1.5s ease-out;
+        }
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+        }
+        h2 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        p {
+            font-size: 1.2rem;
+            color: #6c757d;
+            max-width: 800px;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+        .image-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: 20px 0;
+        }
+        .image-container img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>The Theory of Evolution</h1>
+    <div class="image-container">
+        <img src="data:image/jpeg;base64,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" alt="The Theory of Evolution">
+    </div>
+    <h2>What is it?</h2>
+    <p>The Theory of Evolution, first proposed by Charles Darwin in the 19th century, explains how species change over time through a process of natural selection. This scientific theory suggests that organisms evolve from common ancestors, with genetic variations that provide advantages for survival being passed on to future generations.</p>
+    <h2>Mechanisms of Evolution</h2>
+    <p>The core mechanisms driving evolution include natural selection, genetic drift, mutations, and gene flow. Natural selection occurs when certain traits increase an organism's chances of surviving and reproducing in its environment. Genetic drift refers to random changes in the frequency of traits within a population. Mutations are changes in the DNA sequence, which may introduce new traits. Gene flow involves the transfer of genetic material between populations, influencing genetic diversity.</p>
+    <h2>Evidence for Evolution</h2>
+    <p>Evidence supporting the theory of evolution comes from multiple disciplines including genetics, paleontology, comparative anatomy, and embryology. Fossils show gradual changes in species over time, while genetic studies demonstrate how similar species share common genes inherited from common ancestors.</p>
+</body>
+</html>
