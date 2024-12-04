@@ -207,11 +207,13 @@
 <div id="searchResults"></div>
 
 <script>
-  async function getFiles() {
-    const response = await fetch('/.netlify/functions/list-files');
-    const files = await response.json();
-    return files;
-  }
+  const pages = [
+    'page-one.html',
+    'page-two.html',
+    'another-page.html',
+    'contact-us.html',
+    // Add more pages here as needed
+  ];
 
   // Function to format the search result
   function formatResult(page) {
@@ -221,16 +223,17 @@
   }
 
   // Function to search pages based on user query
-  function searchPages(query, files) {
+  function searchPages(query) {
     query = query.toLowerCase(); // Normalize query to lower case
-    return files.filter(page => page.toLowerCase().includes(query));
+    const results = pages.filter(page => page.toLowerCase().includes(query));
+    return results;
   }
 
-  document.getElementById('searchForm').addEventListener('submit', async function(event) {
+  // Handle form submission
+  document.getElementById('searchForm').addEventListener('submit', function(event) {
     event.preventDefault();
     const query = document.getElementById('searchQuery').value;
-    const files = await getFiles(); // Get files dynamically from Netlify function
-    const results = searchPages(query, files);
+    const results = searchPages(query);
 
     const resultsContainer = document.getElementById('searchResults');
     resultsContainer.innerHTML = ''; // Clear previous results
