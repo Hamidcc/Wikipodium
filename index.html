@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WikiPodium</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f3ec78, #af4261);
+            color: white;
+            overflow: hidden;
+        }
+
+        h1, p, a {
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-top: 20px;
+            animation: fadeIn 2s ease, slideDown 3s infinite alternate;
+        }
+
+        p {
+            font-size: 1.5rem;
+            margin: 10px auto;
+            animation: zoomIn 2s ease-in, colorPulse 3s infinite alternate;
+        }
+
+        a {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 20px auto;
+            background: #ff5f6d;
+            border-radius: 10px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            animation: bounce 1.5s infinite, rotateIn 3s infinite alternate;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            padding: 10px 0;
+            background: rgba(0, 0, 0, 0.5);
+            animation: glow 3s infinite alternate, scaleIn 3s infinite alternate;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideDown {
+            0% { transform: translateY(-10px); }
+            100% { transform: translateY(10px); }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.8); }
+            to { transform: scale(1); }
+        }
+
+        @keyframes colorPulse {
+            0% { color: #fff; }
+            50% { color: #ff5f6d; }
+            100% { color: #af4261; }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes rotateIn {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 0 5px white; }
+            100% { box-shadow: 0 0 20px white; }
+        }
+
+        @keyframes scaleIn {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+    </style>
+</head>
+<body>
+    <h1 id="mainTitle">Welcome to WikiPodium!</h1>
+    <p id="description">Your go-to platform for reliable, high-quality, and ad-supported information.</p>
+    <a id="exploreBtn" href="#">Explore Now</a>
+
+    <footer id="footer">
+        © 2024 WikiPodium - Powered by Knowledge, Driven by Community.
+    </footer>
+
+    <script>
+        // Main Title: Hover effect
+        const title = document.getElementById('mainTitle');
+        title.addEventListener('mouseenter', () => {
+            title.style.transform = 'scale(1.2)';
+            title.style.transition = 'transform 0.5s ease';
+        });
+        title.addEventListener('mouseleave', () => {
+            title.style.transform = 'scale(1)';
+        });
+
+        // Description: Typewriter effect
+        const desc = document.getElementById('description');
+        const text = desc.innerHTML;
+        desc.innerHTML = '';
+        let i = 0;
+        function typeWriter() {
+            if (i < text.length) {
+                desc.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 50);
+            }
+        }
+        setTimeout(typeWriter, 1000);
+
+        // Explore Button: Ripple effect
+        const btn = document.getElementById('exploreBtn');
+        btn.addEventListener('click', (e) => {
+            const ripple = document.createElement('span');
+            ripple.style.position = 'absolute';
+            ripple.style.width = ripple.style.height = '100px';
+            ripple.style.borderRadius = '50%';
+            ripple.style.background = 'rgba(255, 255, 255, 0.5)';
+            ripple.style.pointerEvents = 'none';
+            ripple.style.left = `${e.clientX - 50}px`;
+            ripple.style.top = `${e.clientY - 50}px`;
+            ripple.style.animation = 'rippleEffect 0.6s ease-out';
+            btn.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 600);
+        });
+
+        // Footer: Dynamic time update
+        const footer = document.getElementById('footer');
+        setInterval(() => {
+            footer.textContent = `© 2024 WikiPodium - Powered by Knowledge, Driven by Community. Time: ${new Date().toLocaleTimeString()}`;
+        }, 1000);
+
+        // Random floating effect on footer
+        setInterval(() => {
+            footer.style.transform = `translate(${Math.random() * 10 - 5}px, ${Math.random() * 10 - 5}px)`;
+        }, 300);
+    </script>
+</body>
+</html>
