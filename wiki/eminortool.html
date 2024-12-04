@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Tool: Article Generator</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #343a40;
+            margin-bottom: 20px;
+        }
+
+        .form-container {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .form-container input, .form-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 1rem;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+        }
+
+        .form-container button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background: #0056b3;
+        }
+
+        .output {
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .output textarea {
+            width: 100%;
+            height: 300px;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Article Generator Tool</h1>
+    <div class="form-container">
+        <label for="main-title">Main Title</label>
+        <input type="text" id="main-title" placeholder="Enter main title">
+
+        <label for="image-url">Image URL</label>
+        <input type="text" id="image-url" placeholder="Enter image URL">
+
+        <label for="section1-title">Section 1 Title</label>
+        <input type="text" id="section1-title" placeholder="Enter section 1 title">
+        <label for="section1-content">Section 1 Content</label>
+        <textarea id="section1-content" placeholder="Enter section 1 content"></textarea>
+
+        <label for="section2-title">Section 2 Title</label>
+        <input type="text" id="section2-title" placeholder="Enter section 2 title">
+        <label for="section2-content">Section 2 Content</label>
+        <textarea id="section2-content" placeholder="Enter section 2 content"></textarea>
+
+        <label for="section3-title">Section 3 Title</label>
+        <input type="text" id="section3-title" placeholder="Enter section 3 title">
+        <label for="section3-content">Section 3 Content</label>
+        <textarea id="section3-content" placeholder="Enter section 3 content"></textarea>
+
+        <button id="generate-code">Generate HTML Code</button>
+    </div>
+
+    <div class="output">
+        <textarea id="generated-code" readonly placeholder="Generated code will appear here..."></textarea>
+    </div>
+
+    <script>
+        document.getElementById('generate-code').addEventListener('click', () => {
+            const mainTitle = document.getElementById('main-title').value;
+            const imageUrl = document.getElementById('image-url').value;
+            const section1Title = document.getElementById('section1-title').value;
+            const section1Content = document.getElementById('section1-content').value;
+            const section2Title = document.getElementById('section2-title').value;
+            const section2Content = document.getElementById('section2-content').value;
+            const section3Title = document.getElementById('section3-title').value;
+            const section3Content = document.getElementById('section3-content').value;
+
+            const generatedCode = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${mainTitle}</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(120deg, #f6f8fc, #e9efff);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        h1, h2 {
+            color: #343a40;
+            text-align: center;
+            animation: fadeInSlideDown 1.5s ease-out;
+        }
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+        }
+        h2 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        p {
+            font-size: 1.2rem;
+            color: #6c757d;
+            max-width: 800px;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+        .image-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: 20px 0;
+        }
+        .image-container img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>${mainTitle}</h1>
+    <div class="image-container">
+        <img src="${imageUrl}" alt="${mainTitle}">
+    </div>
+    <h2>${section1Title}</h2>
+    <p>${section1Content}</p>
+    <h2>${section2Title}</h2>
+    <p>${section2Content}</p>
+    <h2>${section3Title}</h2>
+    <p>${section3Content}</p>
+</body>
+</html>
+            `.trim();
+
+            document.getElementById('generated-code').value = generatedCode;
+        });
+    </script>
+</body>
+</html>
